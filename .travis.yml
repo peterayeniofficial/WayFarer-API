@@ -2,7 +2,7 @@ language: node_js
 env:
   global:
     # codeclimate test reporter
-    - CC_TEST_REPORTER_ID=e8e73e402ea1c4e5bed648c40d89b91413c1c05842c1419447aa09a31bfa2c8e
+    - CC_TEST_REPORTER_ID=c8cf39ddedf3d028e4658fdd9e1a1f791d44c399c71a3daebbbcd9f5f0592441
 matrix:
   include:
   - node_js: '10'
