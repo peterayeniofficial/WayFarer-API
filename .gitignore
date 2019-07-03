@@ -1,0 +1,7 @@
+node_modules/
+build/
+ngrok.exe
+.env
+yarn-error.log
+coverage/
+.nyc_output/
