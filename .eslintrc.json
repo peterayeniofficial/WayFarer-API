@@ -18,7 +18,7 @@
     },
     "rules": {
         "indent": ["warn", 4],
-        "linebreak-style": ["error", "windows"],
+        "validateLineBreaks": "LF",
         "arrow-parens": [0],
         "import/no-extraneous-dependencies": [0]
     }
