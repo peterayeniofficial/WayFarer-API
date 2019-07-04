@@ -46,6 +46,15 @@ const createTables = () => {
         status VARCHAR(9) CHECK ( status IN ('active', 'cancelled')) DEFAULT 'active'
         PRIMARY KEY (id),
         FOREIGN KEY (bus_id) REFERENCES buses(id) ON DELETE CASCADE
+    ),
+    bookings(
+        id BIGSERIAL NOT NULL,
+        trip_id int NOT NULL,
+        user_id int Not NULL,
+        created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+        PRIMARY KEY (id),
+        FOREIGN KEY (trip_id) REFERENCES trips(id) ON DELETE CASCADE,
+        FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
     )`;
 
     pool.query(queryText)
@@ -60,7 +69,7 @@ const createTables = () => {
 };
 
 const dropTables = () => {
-    const queryText = 'DROP TABLE IF EXISTS users';
+    const queryText = 'DROP TABLE IF EXISTS users, busses, trips, bookings';
     pool.query(queryText)
         .then((res) => {
             console.log(res);
