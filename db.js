@@ -35,6 +35,17 @@ const createTables = () => {
         year DATE NOT NULL,
         capacity INTEGER NOT NULL,
         PRIMARY KEY (id)
+    ),
+    trips(
+        id BIGSERIAL NOT NULL,
+        bus_id int NOT NULL,
+        origin VARCHAR(100) NOT NULL,
+        destination VARCHAR(100) NOT NULL,
+        trip_date timestamp DEFAULT CURRENT_TIMESTAMP,
+        fare DECIMAL NOT NULL,
+        status VARCHAR(9) CHECK ( status IN ('active', 'cancelled')) DEFAULT 'active'
+        PRIMARY KEY (id),
+        FOREIGN KEY (bus_id) REFERENCES buses(id) ON DELETE CASCADE
     )`;
 
     pool.query(queryText)
