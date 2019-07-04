@@ -26,7 +26,16 @@ const createTables = () => {
         password VARCHAR(250) NOT NULL,
         is_admin BOOLEAN
 
-        )`;
+        ),
+    buses(
+        id BIGSERIAL NOT NULL,
+        number_plate VARCHAR(12) NOT NULL UNIQUE,
+        manufacturer VARCHAR(100) NOT NULL,
+        model VARCHAR(25) NOT NULL,
+        year DATE NOT NULL,
+        capacity INTEGER NOT NULL,
+        PRIMARY KEY (id)
+    )`;
 
     pool.query(queryText)
         .then((res) => {
