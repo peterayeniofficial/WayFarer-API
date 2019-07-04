@@ -18,17 +18,17 @@
     "repository": {
         "type": "git",
         "url": "git+https://github.com/peterayeniofficial/WayFarer-API.git"
-      },
-      "keywords": [
+    },
+    "keywords": [
         "API",
         "Transportation"
-      ],
-      "author": "Peter Ayeni",
-      "license": "ISC",
-      "bugs": {
+    ],
+    "author": "Peter Ayeni",
+    "license": "ISC",
+    "bugs": {
         "url": "https://github.com/peterayeniofficial/WayFarer-API/issues"
-      },
-      "homepage": "https://github.com/peterayeniofficial/WayFarer-API#readme",
+    },
+    "homepage": "https://github.com/peterayeniofficial/WayFarer-API#readme",
     "dependencies": {
         "cookie-parser": "~1.4.3",
         "cors": "^2.8.5",
@@ -36,8 +36,10 @@
         "dotenv": "^8.0.0",
         "express": "~4.16.0",
         "express-validator": "^6.1.0",
+        "moment": "^2.24.0",
         "morgan": "~1.9.0",
-        "nodemon": "^1.19.1"
+        "nodemon": "^1.19.1",
+        "pg": "^7.11.0"
     },
     "devDependencies": {
         "@babel/cli": "^7.4.4",
