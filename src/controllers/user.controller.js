@@ -1,5 +1,6 @@
+import moment from 'moment';
 import db from '../db';
-import utils from '../utils/'
+import utils from '../utils';
 
 const UserController = {
 
@@ -15,8 +16,8 @@ const UserController = {
         const hashPassword = utils.hashPassword(req.body.password);
 
         const text = `INSERT INTO
-            users(first_name, last_name, email, password, is_admin)
-            VALUES($1, $2, $3, $4, $5)
+            users(first_name, last_name, email, password, is_admin, created_at)
+            VALUES($1, $2, $3, $4, $5, $6)
             returning *`;
         const values = [
             req.body.first_name,
@@ -24,6 +25,7 @@ const UserController = {
             req.body.email,
             hashPassword,
             req.body.is_admin,
+            moment(new Date()),
         ];
         try {
             const { rows } = await db.query(text, values);
