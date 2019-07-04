@@ -19,42 +19,38 @@ const createTables = () => {
     const queryText = `
     CREATE TABLE IF NOT EXISTS
     users(
-        id BIGSERIAL NOT NULL PRIMARY KEY,
-        email VARCHAR(150) NOT NULL UNIQUE,
-        first_name VARCHAR(120) NOT NULL,
-        last_name VARCHAR(120) NOT NULL,
-        password VARCHAR(250) NOT NULL,
-        is_admin BOOLEAN
+        id BIGSERIAL PRIMARY KEY,
+        email character varying(150) NOT NULL UNIQUE,
+        first_name character varying(120) NOT NULL,
+        last_name character varying(120) NOT NULL,
+        password character varying(250) NOT NULL,
+        is_admin boolean
 
         ),
     buses(
-        id BIGSERIAL NOT NULL,
-        number_plate VARCHAR(12) NOT NULL UNIQUE,
-        manufacturer VARCHAR(100) NOT NULL,
-        model VARCHAR(25) NOT NULL,
-        year DATE NOT NULL,
-        capacity INTEGER NOT NULL,
-        PRIMARY KEY (id)
+        id BIGSERIAL PRIMARY KEY,
+        number_plate character varying(12) NOT NULL UNIQUE,
+        manufacturer character varying(100) NOT NULL,
+        model character varying(25) NOT NULL,
+        year date NOT NULL,
+        capacity integer NOT NULL
     ),
     trips(
-        id BIGSERIAL NOT NULL,
-        bus_id int NOT NULL,
-        origin VARCHAR(100) NOT NULL,
-        destination VARCHAR(100) NOT NULL,
-        trip_date timestamp DEFAULT CURRENT_TIMESTAMP,
-        fare DECIMAL NOT NULL,
-        status VARCHAR(9) CHECK ( status IN ('active', 'cancelled')) DEFAULT 'active'
-        PRIMARY KEY (id),
-        FOREIGN KEY (bus_id) REFERENCES buses(id) ON DELETE CASCADE
+        id SERIAL PRIMARY KEY,
+        bus_id integer NOT NULL REFERENCES buses(id) ON DELETE CASCADE,
+        origin character varying(100) NOT NULL,
+        destination character varying(100) NOT NULL,
+        trip_date date NOT NULL DEFAULT '2019-07-04'::date,
+        fare numeric NOT NULL,
+        status character varying(10) NOT NULL DEFAULT 'active'::character varying CHECK (status::text = ANY (ARRAY['active'::character varying, 'cancelled'::character varying]::text[]))
     ),
     bookings(
-        id BIGSERIAL NOT NULL,
-        trip_id int NOT NULL,
-        user_id int Not NULL,
-        created_on timestamp DEFAULT CURRENT_TIMESTAMP,
-        PRIMARY KEY (id),
-        FOREIGN KEY (trip_id) REFERENCES trips(id) ON DELETE CASCADE,
-        FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+        id BIGSERIAL PRIMARY KEY,
+        email character varying(150) NOT NULL UNIQUE,
+        first_name character varying(120) NOT NULL,
+        last_name character varying(120) NOT NULL,
+        password character varying(250) NOT NULL,
+        is_admin boolean
     )`;
 
     pool.query(queryText)
