@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 const Utils = {
     // get hash password
     hashPassword(password) {
-        return bcrypt.hashSync(password, bcrypt.genSaltSync(10));
+        return bcrypt.hashSync(password, bcrypt.genSaltSync(8));
     },
 
     // compare Password
@@ -22,7 +22,7 @@ const Utils = {
         const token = jwt.sign({
             userId: id,
         },
-        process.env.SECRET, { expiresIn: '8d' });
+        process.env.SECRET, { expiresIn: '7d' });
         return token;
     },
 };
