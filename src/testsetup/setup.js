@@ -11,3 +11,4 @@ chai.use(sinonChai);
 export const { expect } = chai;
 export const server = supertest.agent(app);
 export const BASE_URL = '/';
+export const SIGNUP_URL = '/api/v1/users';
