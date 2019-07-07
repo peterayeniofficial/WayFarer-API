@@ -12,3 +12,26 @@ describe('Initial test', () => {
             });
     });
 });
+
+describe('user can signup', () => {
+    it('user can register', done => {
+        const user = {
+            first_name: 'Main',
+            last_name: 'Joe',
+            email: 'example34@gmail.com',
+            password: 'password',
+            is_admin: true,
+        };
+        server
+            .post('/api/v1/users')
+            .send(user)
+            .expect('Content-Type', /json/)
+            .expect(201)
+            .end((err, res) => {
+                if (err) return done(err);
+                expect(res.status).to.equal(201);
+                expect(res.body.message).to.equal('success');
+                done();
+            });
+    });
+});
