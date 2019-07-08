@@ -18,7 +18,7 @@ describe('user can signup', () => {
         const user = {
             first_name: 'Main',
             last_name: 'Joe',
-            email: 'example34@gmail.com',
+            email: 'example334@gmail.com',
             password: 'password',
             is_admin: true,
         };
