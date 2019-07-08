@@ -6,19 +6,18 @@ import utils from '../utils';
 const UserController = {
 
     async signup(req, res) {
-        // check
         const {
-            first_name, last_name, email, is_admin,
+            first_name, last_name, email, is_admin, password,
         } = req.body;
 
-        if (!req.body.email || !req.body.password) {
+        if (!email || !password) {
             return res.status(400).json({ message: 'Some values are missing' });
         }
 
-        if (!utils.checkIsValidEmail(req.body.email)) {
+        if (!utils.checkIsValidEmail(email)) {
             return res.status(400).json({ message: 'Please provide a valid email' });
         }
-        const hashPassword = utils.hashPassword(req.body.password);
+        const hashPassword = utils.hashPassword(password);
         const text = `INSERT INTO
             users(first_name, last_name, email, password, is_admin, created_on)
             VALUES($1, $2, $3, $4, $5, $6)
