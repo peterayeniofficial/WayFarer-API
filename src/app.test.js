@@ -1,5 +1,7 @@
 import { expect, server, BASE_URL } from './testsetup/setup';
 
+const newNumber = Math.random(2);
+
 describe('Initial test', () => {
     it('get base url', done => {
         server
@@ -18,7 +20,7 @@ describe('user can signup', () => {
         const user = {
             first_name: 'Main',
             last_name: 'Joe',
-            email: 'example334@gmail.com',
+            email: `${newNumber}@e.com`,
             password: 'password',
             is_admin: true,
         };
