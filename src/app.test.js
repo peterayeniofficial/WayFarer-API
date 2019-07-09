@@ -1,7 +1,5 @@
 import { expect, server, BASE_URL } from './testsetup/setup';
 
-const newNumber = Math.random(2);
-
 describe('Initial test', () => {
     it('get base url', done => {
         server
@@ -14,4 +12,3 @@ describe('Initial test', () => {
             });
     });
 });
-
