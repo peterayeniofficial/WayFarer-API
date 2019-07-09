@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 
 // routes
 import router from './routes/index';
-import userRoutes from './routes/user.route';
+import authRoutes from './routes/auth.route';
 
 dotenv.config();
 const app = express();
@@ -18,6 +18,7 @@ app.use(cookieParser());
 app.use(cors('*'));
 
 app.use('/', router);
-app.use('/api/v1/users', userRoutes);
+app.use('/api/v1/auth/', authRoutes);
+app.use('/api/v1/auth/', authRoutes);
 
 export default app;
