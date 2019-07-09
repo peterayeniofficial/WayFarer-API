@@ -1,9 +1,8 @@
 /* eslint-disable camelcase */
-import moment from 'moment';
-import db from '../db';
-import utils from '../utils';
+import db from '../../db';
+import utils from '../../utils';
 
-const UserController = {
+const UserAuth = {
 
     async signup(req, res) {
         const {
@@ -19,25 +18,18 @@ const UserController = {
         }
         const hashPassword = utils.hashPassword(password);
         const text = `INSERT INTO
-            users(first_name, last_name, email, password, is_admin, created_on)
-            VALUES($1, $2, $3, $4, $5, $6)
+            users(first_name, last_name, email, password, is_admin)
+            VALUES($1, $2, $3, $4, $5)
             returning *`;
-        const values = [
-            first_name,
-            last_name,
-            email,
-            hashPassword,
-            is_admin,
-            moment(new Date()),
-        ];
+        const values = [first_name, last_name, email, hashPassword, is_admin];
 
         try {
             const { rows } = await db.query(text, values);
             const token = utils.generateToken(rows[0].id);
             return res.status(201).send({
-                message: 'success',
-                token,
+                status: 'success',
                 data: rows[0],
+                token,
             });
         } catch (error) {
             if (error.routine === '_bt_check_unique') {
@@ -47,6 +39,7 @@ const UserController = {
         }
     },
 
+
 };
 
-export default UserController;
+export default UserAuth;
