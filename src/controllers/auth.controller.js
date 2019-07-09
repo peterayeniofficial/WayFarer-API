@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
-import db from '../../db';
-import utils from '../../utils';
+import db from '../db';
+import utils from '../utils';
 
 const UserAuth = {
 
@@ -35,6 +35,37 @@ const UserAuth = {
             if (error.routine === '_bt_check_unique') {
                 return res.status(400).send({ message: 'User with that EMAIL already exist' });
             }
+            return res.status(400).send(error);
+        }
+    },
+
+    async signin(req, res) {
+        const { email, password } = req.body;
+
+        if (!email || !password) {
+            return res.status(400).send({ status: 'Some values are missing' });
+        }
+
+        if (!utils.checkIsValidEmail(email)) {
+            return res.status(400).send({ status: 'Please provide a valid email' });
+        }
+
+        const text = 'SELECT * FROM users WHERE email = $1';
+        try {
+            const { rows } = await db.query(text, [email]);
+            if (!rows[0]) {
+                return res.status(400).send({ status: 'Email or Password is incorrect' });
+            }
+            if (!utils.comparePassword(rows[0].password, password)) {
+                return res.status(400).send({ status: 'The Password is incorrect' });
+            }
+            const token = utils.generateToken(rows[0].id);
+            return res.status(200).send({
+                status: 'success',
+                token,
+                data: rows[0],
+            });
+        } catch (error) {
             return res.status(400).send(error);
         }
     },
