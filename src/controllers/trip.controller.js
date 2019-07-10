@@ -29,6 +29,23 @@ const Trip = {
             return res.json(error);
         }
     },
+
+    async getAllTrips(req, res) {
+        const query = 'SELECT * FROM trips where user_id = $1';
+
+        try {
+            const { rows } = await db.query(query, [req.user.id]);
+            return res.status(200).json({
+                status: 'success',
+                data: rows,
+            });
+        } catch (error) {
+            return res.json({
+                status: 'error',
+                error,
+            });
+        }
+    },
 };
 
 export default Trip;
