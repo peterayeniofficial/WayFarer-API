@@ -26,12 +26,15 @@ const Trip = {
                 data: rows[0],
             });
         } catch (error) {
-            return res.json(error);
+            return res.status(400).json({
+                status: 'error',
+                error,
+            });
         }
     },
 
     async getAllTrips(req, res) {
-        const query = 'SELECT * FROM trips where user_id = $1';
+        const query = 'SELECT * FROM trips WHERE user_id = $1';
 
         try {
             const { rows } = await db.query(query, [req.user.id]);
@@ -41,6 +44,29 @@ const Trip = {
             });
         } catch (error) {
             return res.json({
+                status: 'error',
+                error,
+            });
+        }
+    },
+
+    async getAtrip(req, res) {
+        const query = 'SELECT * FROM trips WHERE id = $1 AND user_id = $2';
+        const values = [req.params.id, req.user.id];
+        try {
+            const { rows } = await db.query(query, values);
+            if (!rows[0]) {
+                return res.status(400).json({
+                    status: 'error',
+                    message: 'Trip not found',
+                });
+            }
+            return res.status(200).json({
+                status: 'success',
+                data: rows[0],
+            });
+        } catch (error) {
+            return res.status(400).json({
                 status: 'error',
                 error,
             });
