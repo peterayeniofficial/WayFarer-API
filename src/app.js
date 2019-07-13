@@ -9,6 +9,7 @@ import Auth from './middleware/Authenticate';
 import router from './routes/index';
 import authRoutes from './routes/auth.route';
 import tripRoutes from './routes/trip.route';
+import bookingsRoutes from './routes/booking.route';
 
 dotenv.config();
 const app = express();
@@ -22,6 +23,7 @@ app.use(cors('*'));
 app.use('/', router);
 app.use('/api/v1/auth/', authRoutes);
 app.use('/', Auth.checkToken, tripRoutes);
+app.use('/', Auth.checkToken, bookingsRoutes);
 
 
 export default app;

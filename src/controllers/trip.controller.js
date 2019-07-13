@@ -24,6 +24,7 @@ const Trip = {
             return res.status(201).json({
                 status: 'success',
                 data: rows[0],
+                is_admin: req.user.is_admin,
             });
         } catch (error) {
             return res.status(400).json({
@@ -41,6 +42,7 @@ const Trip = {
             return res.status(200).json({
                 status: 'success',
                 data: rows,
+                is_admin: req.user.is_admin,
             });
         } catch (error) {
             return res.json({
@@ -64,6 +66,7 @@ const Trip = {
             return res.status(200).json({
                 status: 'success',
                 data: rows[0],
+                is_admin: req.user.is_admin,
             });
         } catch (error) {
             return res.status(400).json({
