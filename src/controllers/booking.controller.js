@@ -92,6 +92,39 @@ const Booking = {
         }
     },
 
+    async deleteBooking(req, res) {
+        const isAdmin = [req.user.is_admin];
+        let deleteQuery = '';
+        let values = [];
+
+        if (isAdmin) {
+            deleteQuery = 'DELETE FROM bookings WHERE id = $1 returning *';
+            values = [req.params.id];
+        } else {
+            deleteQuery = 'DELETE FROM bookings WHERE id = $1 AND bookings.user_id = $2 returning *';
+            values = [req.params.id, req.user.id];
+        }
+
+        try {
+            const { rows } = await db.query(deleteQuery, values);
+            if (rows[0]) {
+                return res.status(204).json({
+                    status: 'success',
+                    data: { message: 'Booking deleted successfully' },
+                });
+            }
+            return res.status(400).json({
+                status: 'error',
+                message: 'Booking not found',
+            });
+        } catch (error) {
+            return res.status(400).json({
+                status: 'error',
+                error,
+            });
+        }
+    },
+
 };
 
 export default Booking;
