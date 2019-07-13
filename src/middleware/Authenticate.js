@@ -13,9 +13,15 @@ const Authenticate = {
             const query = 'SELECT * FROM users WHERE id = $1';
             const { rows } = await db.query(query, [decodedToken.userId]);
             if (!rows[0]) {
-                return res.status(400).send({ status: 'The token provided is invalid' });
+                return res.status(400).send({
+                    status: 'error',
+                    message: 'The token provided is invalid',
+                });
             }
-            req.user = { id: decodedToken.userId };
+            req.user = {
+                id: decodedToken.userId,
+                is_admin: rows[0].is_admin,
+            };
             next();
         } catch (error) {
             return res.status(400).send(error);
