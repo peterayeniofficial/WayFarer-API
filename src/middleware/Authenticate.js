@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import db from '../db';
+import db from '../../config/connection.db';
 
 const Authenticate = {
     async checkToken(req, res, next) {
