@@ -11,13 +11,14 @@ const Booking = {
         }
 
         const query = `INSERT INTO
-            bookings(trip_id, user_id, created_on)
-            values($1, $2, $3)
+            bookings(trip_id, user_id, seat_number, created_on)
+            values($1, $2, $3, $4)
             returning *`;
 
         const values = [
             req.body.trip_id,
             req.user.id,
+            req.body.seat_number,
             moment(new Date()),
         ];
 
@@ -40,7 +41,7 @@ const Booking = {
         const allBookingAdmin = `
         SELECT bookings.id as booking_id, bookings.user_id, bookings.trip_id, 
         users.first_name, trips.trip_date, trips.bus_id, bookings.created_on,
-        users.last_name, users.email, users.is_admin 
+        users.last_name, users.email, users.is_admin, bookings.seat_number 
         FROM users                                                                                                                       
         INNER JOIN bookings ON bookings.user_id = users.id                                                                               
         INNER JOIN trips ON bookings.trip_id = trips.id                                                                                  
@@ -50,7 +51,7 @@ const Booking = {
         const allBookingUser = `
         SELECT bookings.id as booking_id, bookings.user_id, bookings.trip_id, 
         users.first_name, trips.trip_date, trips.bus_id, bookings.created_on,
-        users.last_name, users.email, users.is_admin 
+        users.last_name, users.email, users.is_admin, bookings.seat_number 
         FROM users                                                                                                                       
         INNER JOIN bookings ON bookings.user_id = users.id                                                                               
         INNER JOIN trips ON bookings.trip_id = trips.id
