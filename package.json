@@ -4,7 +4,7 @@
     "private": true,
     "scripts": {
         "prestart": "npm run build",
-        "start": "node ./build/bin/www",
+        "start": "node ./build/app.js",
         "devStart": "nodemon --exec babel-node ./src/bin/www",
         "devServer": "npm-run-all --parallel dev-server localtunnel",
         "build": "babel ./src --out-dir build",
