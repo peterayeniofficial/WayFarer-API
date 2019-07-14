@@ -13,8 +13,8 @@
         "test": "nyc --reporter=html --reporter=text --reporter=lcov mocha -r @babel/register -r src/testsetup/stubs.js src/**/*.test.js",
         "uploadCoverage": "nyc report --reporter=text-lcov | coveralls",
         "posttest": "npm run uploadCoverage",
-        "dev-migration": "node  ./src/db/migrations.db",
-        "heroku-prebuild": "rm -rf node_modules"
+        "dev-migration": "node  ./src/db/migrations.db"
+       
     },
     "repository": {
         "type": "git",
