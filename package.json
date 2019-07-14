@@ -4,10 +4,10 @@
     "private": true,
     "scripts": {
         "prestart": "npm run build",
-        "start": "node ./build/app.js",
+        "start": "NODE_ENV=production node ./build/app.js",
         "devStart": "nodemon --exec babel-node ./src/bin/www",
         "devServer": "npm-run-all --parallel dev-server localtunnel",
-        "build": "babel ./src --out-dir build",
+        "build": "babel ./src --out-dir ./build --copy-files --ignore ./node_modules,./coverage,./.babelrc,.nyc_output,./package.json,./npm-debug.log,./.travis.yml,./.eslintrc.js,./UI,./README.md",
         "lint": "eslint ./src",
         "localtunnel": "lt --port 3000 --subdomain express-starter-kit",
         "test": "nyc --reporter=html --reporter=text --reporter=lcov mocha -r @babel/register -r src/testsetup/stubs.js src/**/*.test.js",
@@ -45,7 +45,8 @@
         "pg": "^7.11.0",
         "swagger-jsdoc": "^3.3.0",
         "swagger-ui-express": "^4.0.7",
-        "@babel/runtime": "^7.4.5"
+        "@babel/runtime": "^7.4.5",
+        "async": "^3.1.0"
     },
     "devDependencies": {
         "@babel/cli": "^7.4.4",
@@ -54,7 +55,6 @@
         "@babel/plugin-transform-runtime": "^7.4.4",
         "@babel/preset-env": "^7.4.5",
         "@babel/register": "^7.4.4",
-        "@babel/runtime": "^7.4.5",
         "chai": "^4.2.0",
         "chance": "^1.0.18",
         "coveralls": "^3.0.4",
