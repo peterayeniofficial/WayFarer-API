@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "private": true,
     "scripts": {
-        "prestart": "yarn build",
+        "prestart": "npm run build",
         "start": "node ./build/bin/www",
         "devStart": "nodemon --exec babel-node ./src/bin/www",
         "devServer": "npm-run-all --parallel dev-server localtunnel",
@@ -12,7 +12,7 @@
         "localtunnel": "lt --port 3000 --subdomain express-starter-kit",
         "test": "nyc --reporter=html --reporter=text --reporter=lcov mocha -r @babel/register -r src/testsetup/stubs.js src/**/*.test.js",
         "uploadCoverage": "nyc report --reporter=text-lcov | coveralls",
-        "posttest": "yarn uploadCoverage",
+        "posttest": "npm run uploadCoverage",
         "dev-migration": "node  ./src/db/migrations.db"
     },
     "repository": {
@@ -43,7 +43,8 @@
         "nodemon": "^1.19.1",
         "pg": "^7.11.0",
         "swagger-jsdoc": "^3.3.0",
-        "swagger-ui-express": "^4.0.7"
+        "swagger-ui-express": "^4.0.7",
+        "@babel/runtime": "^7.4.5"
     },
     "devDependencies": {
         "@babel/cli": "^7.4.4",
