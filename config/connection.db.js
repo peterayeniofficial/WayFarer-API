@@ -1,10 +1,12 @@
-import { Pool } from 'pg';
 import dotenv from 'dotenv';
+
+const pg = require('pg');
+
 
 dotenv.config();
 
 // database connection
-const pool = new Pool({
+const pool = new pg.Pool({
     connectionString: process.env.DATABASE_URL,
 });
 
