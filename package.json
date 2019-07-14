@@ -4,7 +4,7 @@
     "private": true,
     "scripts": {
         "prestart": "npm run build",
-        "start": "node ./build/app.js",
+        "start": "node ./build/bin/www",
         "devStart": "nodemon --exec babel-node ./src/bin/www",
         "devServer": "npm-run-all --parallel dev-server localtunnel",
         "build": "babel ./src --out-dir ./build --copy-files --ignore ./node_modules,./coverage,./.babelrc,.nyc_output,./package.json,./npm-debug.log,./.travis.yml,./.eslintrc.js,./UI,./README.md",
@@ -14,7 +14,6 @@
         "uploadCoverage": "nyc report --reporter=text-lcov | coveralls",
         "posttest": "npm run uploadCoverage",
         "dev-migration": "node  ./src/db/migrations.db"
-       
     },
     "repository": {
         "type": "git",
@@ -45,8 +44,7 @@
         "pg": "^7.11.0",
         "swagger-jsdoc": "^3.3.0",
         "swagger-ui-express": "^4.0.7",
-        "@babel/runtime": "^7.4.5",
-        "async": "^3.1.0"
+        "@babel/runtime": "^7.4.5"
     },
     "devDependencies": {
         "@babel/cli": "^7.4.4",
