@@ -10,6 +10,7 @@ import router from './routes/index';
 import authRoutes from './routes/auth.route';
 import tripRoutes from './routes/trip.route';
 import bookingsRoutes from './routes/booking.route';
+import busRoutes from './routes/bus.route';
 
 dotenv.config();
 const app = express();
@@ -24,6 +25,7 @@ app.use('/', router);
 app.use('/api/v1/auth/', authRoutes);
 app.use('/', Auth.checkToken, tripRoutes);
 app.use('/', Auth.checkToken, bookingsRoutes);
+app.use('/', Auth.checkToken, busRoutes);
 
 
 export default app;
