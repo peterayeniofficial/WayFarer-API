@@ -4,16 +4,17 @@
     "private": true,
     "scripts": {
         "prestart": "yarn build",
-        "start": "node ./build/bin/www",
-        "devStart": "nodemon --exec babel-node ./src/bin/www",
+        "start": "NODE_ENV=production node ./build/bin/www",
+        "devStart": "NODE_ENV=development nodemon --exec babel-node ./src/bin/www",
         "devServer": "npm-run-all --parallel dev-server localtunnel",
         "build": "./node_modules/.bin/babel ./src --out-dir build --ignore src/mockapi,src/**/*.test.js",
         "lint": "./node_modules/.bin/eslint ./src",
         "localtunnel": "lt --port 3000 --subdomain express-starter-kit",
-        "ngrok": "ngrok http 8000",
         "test": "nyc --reporter=html --reporter=text --reporter=lcov mocha -r @babel/register -r src/testsetup/stubs.js src/**/*.test.js",
         "uploadCoverage": "nyc report --reporter=text-lcov | coveralls",
-        "posttest": "yarn uploadCoverage"
+        "posttest": "yarn uploadCoverage",
+        "dev-migration": "node  ./src/db/migrations.db"
+
     },
     "repository": {
         "type": "git",
