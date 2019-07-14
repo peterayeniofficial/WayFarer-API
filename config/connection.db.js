@@ -5,7 +5,7 @@ dotenv.config();
 
 // database connection
 const pool = new Pool({
-    connectionString: process.env.DEV_DB,
+    connectionString: process.env.DATABASE_URL,
 });
 
 export default {
