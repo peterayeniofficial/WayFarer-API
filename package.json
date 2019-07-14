@@ -7,7 +7,7 @@
         "start": "node ./build/bin/www",
         "devStart": "nodemon --exec babel-node ./src/bin/www",
         "devServer": "npm-run-all --parallel dev-server localtunnel",
-        "build": "babel ./src --out-dir build",
+        "build": "babel-node ./src --out-dir build",
         "lint": "eslint ./src",
         "localtunnel": "lt --port 3000 --subdomain express-starter-kit",
         "test": "nyc --reporter=html --reporter=text --reporter=lcov mocha -r @babel/register -r src/testsetup/stubs.js src/**/*.test.js",
