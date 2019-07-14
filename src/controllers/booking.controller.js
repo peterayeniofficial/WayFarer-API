@@ -1,5 +1,5 @@
 import moment from 'moment';
-import db from '../../config/connection.db';
+import db from '../config/connection.db';
 
 const Booking = {
     async createBooking(req, res) {

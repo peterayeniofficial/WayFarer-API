@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import db from '../../config/connection.db';
+import db from '../config/connection.db';
 import utils from '../utils';
 
 const UserAuth = {

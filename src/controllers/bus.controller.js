@@ -1,4 +1,4 @@
-import db from '../../config/connection.db';
+import db from '../config/connection.db';
 
 const Bus = {
     async createBus(req, res) {
