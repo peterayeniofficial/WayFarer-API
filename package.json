@@ -14,7 +14,6 @@
         "uploadCoverage": "nyc report --reporter=text-lcov | coveralls",
         "posttest": "yarn uploadCoverage",
         "dev-migration": "node  ./src/db/migrations.db"
-
     },
     "repository": {
         "type": "git",
@@ -42,7 +41,9 @@
         "moment": "^2.24.0",
         "morgan": "~1.9.0",
         "nodemon": "^1.19.1",
-        "pg": "^7.11.0"
+        "pg": "^7.11.0",
+        "swagger-jsdoc": "^3.3.0",
+        "swagger-ui-express": "^4.0.7"
     },
     "devDependencies": {
         "@babel/cli": "^7.4.4",
