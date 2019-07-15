@@ -22,7 +22,7 @@ app.use(cookieParser());
 app.use(cors('*'));
 
 app.use('/', router);
-app.use('/api/v1/auth/', authRoutes);
+app.use('/auth/', authRoutes);
 app.use('/', Auth.checkToken, tripRoutes);
 app.use('/', Auth.checkToken, bookingsRoutes);
 app.use('/', Auth.checkToken, busRoutes);
